@@ -14,3 +14,7 @@ export interface NewNote {
 }
 
 export type NoteTag = 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping';
+
+export type NotesClientProps = {
+  tag: string;
+};

@@ -13,13 +13,26 @@ interface DeleteNoteResponse {
   note: Note;
 }
 
-export async function fetchNotes(
-  search: string,
-  page: number,
-  perPage: number = 12
-): Promise<FetchNotesResponse> {
+interface FetchNotesParams {
+  search: string;
+  page: number;
+  perPage?: number;
+  tag?: string;
+}
+
+export async function fetchNotes({
+  search,
+  page,
+  perPage = 12,
+  tag,
+}: FetchNotesParams): Promise<FetchNotesResponse> {
+  const params: FetchNotesParams = { search, page, perPage };
+
+  if (tag && tag !== 'all') {
+    params.tag = tag;
+  }
   const response = await axios.get<FetchNotesResponse>(BASE_URL, {
-    params: { search, page, perPage },
+    params,
     headers: { Authorization: `Bearer ${myKey}` },
   });
 

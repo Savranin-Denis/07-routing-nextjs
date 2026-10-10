@@ -12,16 +12,17 @@ import NoteForm from '@/components/NoteForm/NoteForm';
 import Loader from '@/components/Loader/Loader';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import NoteList from '@/components/NoteList/NoteList';
+import { NotesClientProps } from '@/types/note';
 
-const NotesClient = () => {
+const NotesClient = ({ tag }: NotesClientProps) => {
   const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsmodalOpen] = useState(false);
 
   const { data, isFetching, isError } = useQuery({
-    queryKey: ['notes', searchQuery, page],
-    queryFn: () => fetchNotes(searchQuery, page),
+    queryKey: ['notes', searchQuery, page, tag],
+    queryFn: () => fetchNotes({ search: searchQuery, page, tag }),
     placeholderData: keepPreviousData,
   });
 
