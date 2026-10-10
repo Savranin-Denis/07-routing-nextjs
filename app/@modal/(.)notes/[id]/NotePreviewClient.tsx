@@ -1,10 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Modal from '../Modal/Modal';
 import css from './NotePreview.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNoteById } from '@/lib/api';
+import Modal from '@/components/Modal/Modal';
 
 type Props = {
   id: string;
