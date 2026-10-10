@@ -3,10 +3,11 @@
 import css from './NoteDetails.module.css';
 import { fetchNoteById } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 const NoteDetailsClient = () => {
   const { id } = useParams<{ id: string }>();
+  const router = useRouter();
 
   const {
     data: note,
@@ -18,6 +19,8 @@ const NoteDetailsClient = () => {
     refetchOnMount: false,
   });
 
+  const close = () => router.back();
+
   if (isLoading) return <p>Loading, please wait...</p>;
 
   if (error || !note) return <p>Something went wrong.</p>;
@@ -25,6 +28,9 @@ const NoteDetailsClient = () => {
   return (
     <main className={css.main}>
       <div className={css.container}>
+        <button className={css.backBtn} onClick={close}>
+          Close
+        </button>
         <div className={css.item}>
           <div className={css.header}>
             <h2>{note.title}</h2>
