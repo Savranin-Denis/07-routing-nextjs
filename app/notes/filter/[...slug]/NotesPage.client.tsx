@@ -1,6 +1,6 @@
 'use client';
 import SearchBox from '@/components/SearchBox/SearchBox';
-import css from './Notes.module.css';
+import css from './NotesPage.module.css';
 import { fetchNotes } from '@/lib/api';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';

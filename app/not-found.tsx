@@ -1,8 +1,8 @@
-import css from './Home.module.css';
+import css from './not-found.module.css';
 
-const NtotFound = () => {
+const NotFound = () => {
   return (
-    <div>
+    <div className={css.container}>
       <h1 className={css.title}>404 - Page not found</h1>
       <p className={css.description}>
         Sorry, the page you are looking for does not exist.
@@ -11,4 +11,4 @@ const NtotFound = () => {
   );
 };
 
-export default NtotFound;
+export default NotFound;
